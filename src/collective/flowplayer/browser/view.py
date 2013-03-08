@@ -79,12 +79,13 @@ class File(BrowserView):
         self.height = self.info is not None and self.info.height or None
         self.width = self.info is not None and self.info.width or None
         self._audio_only = self.info is not None and self.info.audio_only or None
-
         if self.height and self.width:
             self._scale = "height: %dpx; width: %dpx;" % (self.height, self.width)
         else:
             self._scale = ""
-
+        context = aq_inner(self.context)
+        self.filename= context.getFilename()
+        
     def audio_only(self):
         return self._audio_only
 
@@ -100,16 +101,19 @@ class File(BrowserView):
                     audio_only=self._audio_only)]
 
     def getFilename(self):
-        context = aq_inner(self.context)
-        return context.getFilename()
+        return self.filename
 
+    def getExt(self):
+        return os.path.splitext(self.filename)[1]
+    
+    def getType(self):
+        return "video/%s" % self.getExt()[1:]
+    
     def href(self):
-        context = aq_inner(self.context)
         ext = ''
         url = self.context.absolute_url()
-        filename = self.getFilename()
-        if filename:
-            extension = os.path.splitext(filename)[1]
+        if self.filename:
+            extension = self.getExt()
             if not url.endswith(extension):
                 ext = "?e=%s" % extension
         return self.context.absolute_url()+ext
