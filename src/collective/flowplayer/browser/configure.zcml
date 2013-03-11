@@ -26,6 +26,30 @@
         template="file.pt"
         permission="zope2.View"
         />
+        
+    <browser:page
+        name="flowplayer-minimal"
+        for="Products.ATContentTypes.interface.IFileContent"
+        class=".view.VideoMinimal"
+        template="file.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="flowplayer-functional"
+        for="Products.ATContentTypes.interface.IFileContent"
+        class=".view.VideoFunctional"
+        template="file.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="flowplayer-playful"
+        for="Products.ATContentTypes.interface.IFileContent"
+        class=".view.VideoPlayful"
+        template="file.pt"
+        permission="zope2.View"
+        />
 
     <browser:page
         name="flowplayer"
@@ -48,13 +72,6 @@
         for="Products.ATContentTypes.interface.IATTopic"
         class=".view.Topic"
         template="folder.pt"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="collective.flowplayer.js"
-        for="*"
-        class=".view.JavaScript"
         permission="zope2.View"
         />
 

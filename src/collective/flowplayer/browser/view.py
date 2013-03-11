@@ -85,7 +85,12 @@ class File(BrowserView):
             self._scale = ""
         context = aq_inner(self.context)
         self.filename= context.getFilename()
+        self.swf_url= "++resource++collective.flowplayer/flowplayer.swf"
+        self.type="minimalist"
         
+    def get_swf_url(self):
+        return self.swf_url
+
     def audio_only(self):
         return self._audio_only
 
@@ -117,7 +122,28 @@ class File(BrowserView):
             if not url.endswith(extension):
                 ext = "?e=%s" % extension
         return self.context.absolute_url()+ext
+    
+    def getKindType(self):
+        return self.type
 
+class VideoMinimal(File):
+    interface.implements(IFlowPlayerView)
+    def __init__(self, context, request):
+        super(VideoMinimal, self).__init__(context, request)
+        self.type="minimalist"
+
+class VideoFunctional(File):
+    interface.implements(IFlowPlayerView)
+    def __init__(self, context, request):
+        super(VideoFunctional, self).__init__(context, request)
+        self.type="functional"
+
+class VideoPlayful(File):
+    interface.implements(IFlowPlayerView)
+    def __init__(self, context, request):
+        super(VideoPlayful, self).__init__(context, request)
+        self.type="playful"
+        
 class Link(File):
 
     def href(self):
@@ -167,6 +193,7 @@ class Folder(BrowserView):
                                 description=brain.Description,
                                 height=view.height,
                                 width=view.width,
+                                type=view.getType(),
                                 audio_only=view.audio_only()))
         return results
 

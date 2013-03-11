@@ -28,17 +28,17 @@
         </p>
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
-		
-        <div class="flowplayer minimalist" tal:attributes="style view/scale" data-swf="http://0.0.0.0:8080/Plone2/++resource++collective.flowplayer/flowplayer.swf" data-ratio="0.417">
-			 <video>
-         		<source tal:attributes="type view/getType;src view/href;"/>
-        	 </video>
-		</div>
-        
+
+        <div tal:define="class view/getKindType" tal:attributes="class string:flowplayer ${class};style view/scale;data-swf view/get_swf_url">
+             <video>
+                    <source tal:attributes="type view/getType;src view/href;"/>
+            </video>
+        </div>
+
         <div metal:use-macro="here/document_relateditems/macros/relatedItems">
             show related items if they exist
         </div>
-    
+
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
     </tal:main-macro>

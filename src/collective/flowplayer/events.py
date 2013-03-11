@@ -15,7 +15,7 @@ from StringIO import StringIO
 
 from hachoir_core.stream import StreamError
 
-VIDEO_EXTENSIONS = ['.f4b', '.f4p', '.f4v', '.flv', '.mp4', '.m4v', '.mov']
+VIDEO_EXTENSIONS = ['.f4b', '.f4p', '.f4v', '.flv', '.mp4', '.m4v', '.mov','.webm']
 AUDIO_EXTENSIONS = ['.mp3']
 
 def is_flowplayer_installed(object):
