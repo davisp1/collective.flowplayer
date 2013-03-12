@@ -10,7 +10,7 @@ install_requires = [
           'hachoir_metadata',
           'hachoir_parser',
           'archetypes.schemaextender',
-          'plone.app.jquery'>=1.8.3,
+          'plone.app.jquery>=1.8.3',
       ]
 
 version = '3.1.2'
